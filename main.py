@@ -19,7 +19,7 @@ class handler(BaseHTTPRequestHandler):
             return
 
         # Fetch data from Wikipedia
-        response = requests.get('https://de.wikipedia.org/w/api.php', params={
+        response = requests.get('https://eo.wikipedia.org/w/api.php', params={
             'format': 'json',
             'action': 'query',
             'prop': 'extracts',
