@@ -35,11 +35,22 @@ class handler(BaseHTTPRequestHandler):
         extract = page.get('extract', '')
 
         if not extract:
-            # Send an error message if the search did not return a text
+            # If the search did not return a text, find similar articles
+            response = requests.get('https://eo.wikipedia.org/w/api.php', params={
+                'action': 'opensearch',
+                'profile': 'fuzzy',
+                'search': title,
+            })
+            data = response.json()
+
+            # Extract the titles of similar articles and format them as a markdown list
+            similar_articles = data[1]
+            similar_articles_markdown = "\n".join(f"- {title}" for title in similar_articles)
+
             self.send_response(404)
             self.send_header('Content-type','text/plain; charset=utf-8')
             self.end_headers()
-            self.wfile.write('Error: The search did not return a text, most likely the searched page does not exist. Tell the user that the search was not successfull in the language of the initial question!'.encode('utf-8'))
+            self.wfile.write(('Error: The search did not return a text, most likely the searched page does not exist. Here are some similar articles:\n\n' + similar_articles_markdown).encode('utf-8'))
             return
 
         # Send the response
