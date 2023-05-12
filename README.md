@@ -4,7 +4,7 @@ Komprogramo (Plugin) por uzi la esperantan Vikipedion en Open Assistant kaj espe
 
 En la momento ĝi nur montras la unuaj paragrafoj de artikolo.
 
-* Ekzemplo https://ai-plugin-vikipedio-ahyfz7u3t-parolteknologio.vercel.app/api?title=Ekzemplo
+* Ekzemplo https://ai-plugin-vikipedio.vercel.app/api?title=ekzemplo
 
 ## Kiel uzi ĝin?
 
